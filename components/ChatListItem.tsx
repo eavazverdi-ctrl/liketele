@@ -16,7 +16,7 @@ const formatTime = (date: Date) => {
 export const ChatListItem: React.FC<ChatListItemProps> = ({ contact, lastMessage, isActive, onClick }) => {
   const itemClasses = `
     flex items-center p-3 cursor-pointer transition-colors duration-200
-    ${isActive ? 'bg-blue-600/50' : 'hover:bg-custom-hover'}
+    ${isActive ? 'bg-sky-500/20' : 'hover:bg-black/5'}
   `;
   
   const truncatedText = lastMessage?.text ? 

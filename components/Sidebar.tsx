@@ -13,14 +13,14 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ contacts, messages, onSelectChat, activeChatId }) => {
   return (
-    <>
-      <div className="p-4 border-b border-gray-700 flex items-center space-x-reverse space-x-3">
+    <div className="flex flex-col h-full w-full">
+      <header className="p-4 border-b border-black/10 flex items-center space-x-reverse space-x-3 shrink-0">
         <img src={MY_USER.avatar} alt="My Avatar" className="w-12 h-12 rounded-full object-cover"/>
         <div>
           <h2 className="text-xl font-semibold text-custom-text-primary">{MY_USER.name}</h2>
-          <p className="text-sm text-green-400">آنلاین</p>
+          <p className="text-sm text-custom-online font-medium">آنلاین</p>
         </div>
-      </div>
+      </header>
       <div className="flex-1 overflow-y-auto">
         {contacts.map(contact => {
           const chatMessages = messages[contact.id] || [];
@@ -37,6 +37,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ contacts, messages, onSelectCh
           );
         })}
       </div>
-    </>
+    </div>
   );
 };

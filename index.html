@@ -12,14 +12,11 @@
         theme: {
           extend: {
             colors: {
-              'custom-bg': '#0f172a',
-              'custom-sidebar': '#1e293b',
-              'custom-chat': '#0f172a',
-              'custom-bubble-sent': '#3b82f6',
-              'custom-bubble-received': '#334155',
-              'custom-text-primary': '#f8fafc',
-              'custom-text-secondary': '#94a3b8',
-              'custom-hover': '#334155'
+              'custom-text-primary': '#1f2937',
+              'custom-text-secondary': '#6b7280',
+              'custom-bubble-sent': '#0ea5e9',
+              'custom-bubble-received': '#ffffff',
+              'custom-online': '#16a34a',
             }
           }
         }
@@ -28,17 +25,17 @@
     <style>
       /* For Webkit browsers */
       ::-webkit-scrollbar {
-        width: 6px;
+        width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #1e293b;
+        background: rgba(224, 242, 254, 0.5); /* cyan-100 with alpha */
       }
       ::-webkit-scrollbar-thumb {
-        background: #4b5563;
-        border-radius: 3px;
+        background: #7dd3fc; /* sky-300 */
+        border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #6b7280;
+        background: #38bdf8; /* sky-400 */
       }
     </style>
   <script type="importmap">
@@ -52,7 +49,7 @@
 }
 </script>
 </head>
-  <body class="bg-custom-bg">
+  <body class="bg-gradient-to-br from-cyan-200 to-blue-300">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

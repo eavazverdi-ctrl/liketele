@@ -8,12 +8,11 @@ import { generateReply } from './services/geminiService';
 
 const App: React.FC = () => {
   const [messages, setMessages] = useState<Record<number, Message[]>>(() => {
-    // Lazy initialization for messages
     const savedMessages = localStorage.getItem('chatMessages');
     return savedMessages ? JSON.parse(savedMessages) : INITIAL_MESSAGES;
   });
   
-  const [activeChatId, setActiveChatId] = useState<number | null>(1);
+  const [activeChatId, setActiveChatId] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -22,6 +21,10 @@ const App: React.FC = () => {
   
   const handleSelectChat = (contactId: number) => {
     setActiveChatId(contactId);
+  };
+
+  const handleGoBack = () => {
+    setActiveChatId(null);
   };
 
   const handleSendMessage = async (text: string) => {
@@ -76,28 +79,37 @@ const App: React.FC = () => {
     }
   };
   
-  const activeContact = CONTACTS.find(c => c.id === activeChatId) || null;
+  const activeContact = activeChatId ? CONTACTS.find(c => c.id === activeChatId) : null;
   const activeMessages = activeChatId ? messages[activeChatId] || [] : [];
+  
+  useEffect(() => {
+    if (activeChatId && !activeContact) {
+        console.error(`Contact with id ${activeChatId} not found.`);
+        setActiveChatId(null);
+    }
+  }, [activeChatId, activeContact]);
 
   return (
-    <div className="flex h-screen font-sans text-custom-text-primary antialiased">
-      <div className="w-full max-w-sm flex flex-col bg-custom-sidebar border-l border-gray-700 md:w-1/3 lg:w-1/4">
-        <Sidebar 
-          contacts={CONTACTS} 
-          messages={messages}
-          onSelectChat={handleSelectChat}
-          activeChatId={activeChatId}
-        />
-      </div>
-      <div className="flex-1 flex flex-col bg-custom-chat">
-        <ChatWindow 
-          contact={activeContact}
-          messages={activeMessages}
-          onSendMessage={handleSendMessage}
-          isLoading={isLoading}
-          myUserId={MY_USER.id}
-        />
-      </div>
+    <div className="h-screen font-sans text-custom-text-primary antialiased p-0 sm:p-4 flex items-center justify-center">
+      <main className="h-full w-full sm:h-auto sm:max-h-[95vh] sm:max-w-4xl sm:mx-auto bg-white/50 backdrop-blur-2xl sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+        {!activeChatId || !activeContact ? (
+          <Sidebar 
+              contacts={CONTACTS} 
+              messages={messages}
+              onSelectChat={handleSelectChat}
+              activeChatId={activeChatId}
+          />
+        ) : (
+          <ChatWindow 
+              contact={activeContact}
+              messages={activeMessages}
+              onSendMessage={handleSendMessage}
+              isLoading={isLoading}
+              myUserId={MY_USER.id}
+              onGoBack={handleGoBack}
+          />
+        )}
+      </main>
     </div>
   );
 };
