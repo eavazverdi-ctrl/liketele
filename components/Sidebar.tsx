@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { Contact, Message } from '../types';
 import { ChatListItem } from './ChatListItem';
@@ -14,7 +13,7 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({ contacts, messages, onSelectChat, activeChatId }) => {
   return (
     <div className="flex flex-col h-full w-full">
-      <header className="p-4 border-b border-black/10 flex items-center space-x-reverse space-x-3 shrink-0">
+      <header className="p-4 border-b border-white/20 flex items-center space-x-reverse space-x-3 shrink-0 bg-white/30 backdrop-blur-xl">
         <img src={MY_USER.avatar} alt="My Avatar" className="w-12 h-12 rounded-full object-cover"/>
         <div>
           <h2 className="text-xl font-semibold text-custom-text-primary">{MY_USER.name}</h2>

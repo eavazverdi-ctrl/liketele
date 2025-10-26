@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import type { Contact, Message } from '../types';
 import { MessageBubble } from './MessageBubble';
@@ -27,7 +26,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ contact, messages, onSen
 
   return (
     <div className="flex flex-col h-full">
-      <header className="flex items-center justify-between p-3 border-b border-black/10 bg-white/20 backdrop-blur-sm shadow-sm z-10 shrink-0">
+      <header className="flex items-center justify-between p-3 border-b border-white/20 z-10 shrink-0 bg-white/30 backdrop-blur-xl">
         <div className="flex items-center">
             <img src={contact.avatar} alt={contact.name} className="w-11 h-11 rounded-full object-cover ml-4" />
             <div>
@@ -39,13 +38,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ contact, messages, onSen
             <ArrowRightIcon />
         </button>
       </header>
-      <main className="flex-1 p-4 overflow-y-auto space-y-4 bg-white/10">
+      <main className="flex-1 p-4 overflow-y-auto space-y-4">
         {messages.map(message => (
           <MessageBubble key={message.id} message={message} isOwnMessage={message.senderId === myUserId} />
         ))}
         {isLoading && (
            <div className="flex justify-start">
-             <div className="bg-custom-bubble-received text-custom-text-primary p-3 rounded-lg max-w-md shadow-md">
+             <div className="bg-white/50 backdrop-blur-md text-custom-text-primary p-3 rounded-xl max-w-lg shadow-lg border border-white/20">
                 <div className="flex items-center justify-center space-x-reverse space-x-1.5">
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse [animation-delay:-0.3s]"></div>
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse [animation-delay:-0.15s]"></div>
@@ -56,7 +55,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ contact, messages, onSen
         )}
         <div ref={messagesEndRef} />
       </main>
-      <footer className="p-3 bg-white/20 backdrop-blur-sm border-t border-black/10 shrink-0">
+      <footer className="p-3 border-t border-white/20 shrink-0 bg-white/30 backdrop-blur-xl">
         <MessageInput onSendMessage={onSendMessage} isLoading={isLoading} />
       </footer>
     </div>

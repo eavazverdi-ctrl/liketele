@@ -25,12 +25,12 @@ export const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage, isLoa
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="پیام خود را بنویسید..."
-        className="flex-1 bg-white/80 text-custom-text-primary placeholder-custom-text-secondary rounded-full py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-sky-500 border border-transparent"
+        className="flex-1 bg-white/50 text-custom-text-primary placeholder-gray-600/90 rounded-full py-2.5 px-4 focus:outline-none focus:ring-2 focus:ring-white/80 border border-white/30 backdrop-blur-sm"
         disabled={isLoading}
       />
       <button 
         type="submit" 
-        className="bg-sky-500 text-white rounded-full p-3 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-white/50 disabled:bg-sky-500/50 disabled:cursor-not-allowed transition-colors"
+        className="bg-sky-500/80 text-white rounded-full p-3 hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-white/80 focus:ring-offset-2 focus:ring-offset-sky-200/50 disabled:bg-sky-500/40 disabled:cursor-not-allowed transition-colors"
         disabled={!text.trim() || isLoading}
         aria-label="ارسال پیام"
       >

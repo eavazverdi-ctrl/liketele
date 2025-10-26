@@ -13,8 +13,11 @@ const formatTime = (date: Date) => {
 
 export const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isOwnMessage }) => {
   const bubbleClasses = `
-    p-3 rounded-xl max-w-lg lg:max-w-xl break-words
-    ${isOwnMessage ? 'bg-custom-bubble-sent text-white' : 'bg-custom-bubble-received text-custom-text-primary shadow-md'}
+    p-3 rounded-xl max-w-lg lg:max-w-xl break-words shadow-lg
+    ${isOwnMessage 
+      ? 'bg-sky-500/80 text-white border border-sky-400/50' 
+      : 'bg-white/50 text-custom-text-primary backdrop-blur-md border border-white/20'
+    }
   `;
   const containerClasses = `flex flex-col ${isOwnMessage ? 'items-end' : 'items-start'}`;
   

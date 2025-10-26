@@ -91,7 +91,7 @@ const App: React.FC = () => {
 
   return (
     <div className="h-screen font-sans text-custom-text-primary antialiased p-0 sm:p-4 flex items-center justify-center">
-      <main className="h-full w-full sm:h-auto sm:max-h-[95vh] sm:max-w-4xl sm:mx-auto bg-white/50 backdrop-blur-2xl sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+      <main className="h-full w-full sm:h-[95vh] sm:max-w-4xl sm:mx-auto bg-white/20 backdrop-blur-3xl sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-white/20">
         {!activeChatId || !activeContact ? (
           <Sidebar 
               contacts={CONTACTS} 
