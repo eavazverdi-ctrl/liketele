@@ -1,0 +1,5 @@
+{
+  "name": "Gemini Messenger",
+  "description": "A simple Telegram-like messenger app where you chat with AI-powered contacts powered by the Gemini API.",
+  "requestFramePermissions": []
+}
