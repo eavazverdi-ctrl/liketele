@@ -8,15 +8,15 @@ interface MessageBubbleProps {
 }
 
 const formatTime = (date: Date) => {
-  return new Intl.DateTimeFormat('fa-IR', { hour: '2-digit', minute: '2-digit' }).format(date);
+  return new Intl.DateTimeFormat('fa-IR', { hour: '2-digit', minute: '2-digit', hour12: true }).format(new Date(date));
 };
 
 export const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isOwnMessage }) => {
   const bubbleClasses = `
-    p-3 rounded-xl max-w-lg lg:max-w-xl break-words shadow-lg
+    p-3 rounded-2xl max-w-sm break-words
     ${isOwnMessage 
-      ? 'bg-sky-500/80 text-white border border-sky-400/50' 
-      : 'bg-white/50 text-custom-text-primary backdrop-blur-md border border-white/20'
+      ? 'bg-sent-bubble text-text-dark rounded-br-lg' 
+      : 'bg-received-bubble text-text-dark rounded-bl-lg'
     }
   `;
   const containerClasses = `flex flex-col ${isOwnMessage ? 'items-end' : 'items-start'}`;
@@ -26,7 +26,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isOwnMess
       <div className={bubbleClasses}>
         <p>{message.text}</p>
       </div>
-      <p className="text-xs text-custom-text-secondary mt-1.5 px-1">{formatTime(new Date(message.timestamp))}</p>
+      <p className="text-xs text-text-muted/80 mt-1.5 px-1">{formatTime(message.timestamp)}</p>
     </div>
   );
 };

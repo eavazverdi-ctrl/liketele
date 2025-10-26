@@ -13,7 +13,7 @@ export const generateReply = async (contactName: string, conversationHistory: Me
         `${msg.senderId === MY_USER.id ? MY_USER.name : contactName}: ${msg.text}`
     ).join('\n');
 
-    const prompt = `شما ${contactName} هستید و در حال چت با دوست خود، "${MY_USER.name}"، در یک پیام‌رسان هستید. لطفاً یک پاسخ کوتاه، طبیعی و دوستانه به آخرین پیام بدهید. لحن خود را غیررسمی نگه دارید.
+    const prompt = `شما ${contactName} هستید و در حال چت با دوست خود، "${MY_USER.name}"، در یک پیام‌رسان با ظاهر مدرن هستید. لطفاً یک پاسخ کوتاه، طبیعی و دوستانه به آخرین پیام بدهید. لحن خود را غیررسمی و امروزی نگه دارید، انگار در حال ارسال یک پیامک واقعی هستید.
 
     تاریخچه چت:
     ${formattedHistory}

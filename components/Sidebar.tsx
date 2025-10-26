@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Contact, Message } from '../types';
 import { ChatListItem } from './ChatListItem';
-import { MY_USER } from '../constants';
+import { SearchIcon } from './icons';
 
 interface SidebarProps {
   contacts: Contact[];
@@ -10,18 +10,42 @@ interface SidebarProps {
   activeChatId: number | null;
 }
 
+const FilterTabs: React.FC = () => {
+    const tabs = ["دوستان", "معلم‌ها", "گروه‌ها", "بیشتر"];
+    return (
+        <div className="flex items-center space-x-reverse space-x-2 px-4">
+            {tabs.map((tab, index) => (
+                <button 
+                    key={tab} 
+                    className={`px-3 py-1.5 rounded-full text-sm font-semibold transition-colors
+                        ${index === 0 
+                            ? 'bg-primary-accent text-white' 
+                            : 'bg-white/10 text-white/80 hover:bg-white/20'
+                        }`}
+                >
+                    {tab}
+                </button>
+            ))}
+        </div>
+    );
+};
+
 export const Sidebar: React.FC<SidebarProps> = ({ contacts, messages, onSelectChat, activeChatId }) => {
   return (
     <div className="flex flex-col h-full w-full">
-      <header className="p-4 border-b border-white/20 flex items-center space-x-reverse space-x-3 shrink-0 bg-white/30 backdrop-blur-xl">
-        <img src={MY_USER.avatar} alt="My Avatar" className="w-12 h-12 rounded-full object-cover"/>
-        <div>
-          <h2 className="text-xl font-semibold text-custom-text-primary">{MY_USER.name}</h2>
-          <p className="text-sm text-custom-online font-medium">آنلاین</p>
+      <header className="starry-night shrink-0 pb-4 relative">
+        <div className="twinkling" />
+        <div className="pt-12 px-4 flex justify-between items-center mb-4">
+            <h1 className="text-3xl font-bold text-text-light">پیام‌ها (32)</h1>
+            <button className="text-white/80 hover:text-white">
+                <SearchIcon />
+            </button>
         </div>
+        <FilterTabs />
       </header>
-      <div className="flex-1 overflow-y-auto">
-        {contacts.map(contact => {
+      <div className="flex-1 overflow-y-auto bg-light-bg rounded-t-3xl -mt-4 pt-4 relative">
+         <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-pink-100/30 to-transparent pointer-events-none" />
+        {contacts.map((contact, index) => {
           const chatMessages = messages[contact.id] || [];
           const lastMessage = chatMessages.length > 0 ? chatMessages[chatMessages.length - 1] : null;
           
@@ -31,6 +55,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ contacts, messages, onSelectCh
               contact={contact}
               lastMessage={lastMessage}
               isActive={contact.id === activeChatId}
+              unreadCount={index === 0 ? 1 : (index === 1 ? 2 : 5)} // Decorative unread count
               onClick={() => onSelectChat(contact.id)}
             />
           );

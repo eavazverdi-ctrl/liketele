@@ -11,42 +11,36 @@
         theme: {
           extend: {
             colors: {
-              'custom-text-primary': '#1f2937',
-              'custom-text-secondary': '#6b7280',
-              'custom-bubble-sent': '#0ea5e9',
-              'custom-bubble-received': '#ffffff',
-              'custom-online': '#16a34a',
+              'dark-bg': '#1e202a',
+              'light-bg': '#f7f7fc',
+              'sent-bubble': '#e9e7ff',
+              'received-bubble': '#ffffff',
+              'primary-accent': '#3d84ff',
+              'text-dark': '#1e202a',
+              'text-light': '#ffffff',
+              'text-muted': '#9a9caf',
+              'unread-badge': '#6c5ce7',
             }
           }
         }
       }
     </script>
     <style>
+      @keyframes move-twink-back {
+          from {background-position:0 0;}
+          to {background-position:-10000px 5000px;}
+      }
+      .starry-night {
+        background: #000 url(https://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+        z-index: 0;
+      }
+      .twinkling{
+        background:transparent url(https://www.script-tutorials.com/demos/360/images/twinkling.png) repeat top center;
+        z-index:1;
+        animation:move-twink-back 200s linear infinite;
+      }
       body {
-        /* Fallback color */
-        background-color: #93c5fd; 
-        /* Layered background: grid lines on top of the gradient */
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-          linear-gradient(to bottom right, #a5f3fc, #93c5fd);
-        background-size: 2rem 2rem, 2rem 2rem, 100% 100%;
-        background-position: center center;
-      }
-
-      /* For Webkit browsers */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: rgba(224, 242, 254, 0.5); /* cyan-100 with alpha */
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #7dd3fc; /* sky-300 */
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #38bdf8; /* sky-400 */
+        background-color: #4d4f58;
       }
     </style>
   <script type="importmap">
