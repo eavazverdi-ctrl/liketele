@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { Message } from '../types';
 
@@ -8,15 +7,15 @@ interface MessageBubbleProps {
 }
 
 const formatTime = (date: Date) => {
-  return new Intl.DateTimeFormat('fa-IR', { hour: '2-digit', minute: '2-digit', hour12: true }).format(new Date(date));
+  return new Intl.DateTimeFormat('fa-IR', { hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date(date));
 };
 
 export const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isOwnMessage }) => {
   const bubbleClasses = `
-    p-3 rounded-2xl max-w-sm break-words
+    p-3 rounded-2xl max-w-xs sm:max-w-sm break-words
     ${isOwnMessage 
-      ? 'bg-sent-bubble text-text-dark rounded-br-lg' 
-      : 'bg-received-bubble text-text-dark rounded-bl-lg'
+      ? 'bg-app-blue text-white rounded-br-md' 
+      : 'bg-light-gray text-text-primary rounded-bl-md'
     }
   `;
   const containerClasses = `flex flex-col ${isOwnMessage ? 'items-end' : 'items-start'}`;
@@ -24,9 +23,9 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isOwnMess
   return (
     <div className={containerClasses}>
       <div className={bubbleClasses}>
-        <p>{message.text}</p>
+        <p className="text-sm">{message.text}</p>
       </div>
-      <p className="text-xs text-text-muted/80 mt-1.5 px-1">{formatTime(message.timestamp)}</p>
+      <p className="text-xs text-text-secondary mt-1.5 px-1">{formatTime(message.timestamp)}</p>
     </div>
   );
 };

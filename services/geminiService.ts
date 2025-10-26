@@ -13,12 +13,12 @@ export const generateReply = async (contactName: string, conversationHistory: Me
         `${msg.senderId === MY_USER.id ? MY_USER.name : contactName}: ${msg.text}`
     ).join('\n');
 
-    const prompt = `شما ${contactName} هستید و در حال چت با دوست خود، "${MY_USER.name}"، در یک پیام‌رسان با ظاهر مدرن هستید. لطفاً یک پاسخ کوتاه، طبیعی و دوستانه به آخرین پیام بدهید. لحن خود را غیررسمی و امروزی نگه دارید، انگار در حال ارسال یک پیامک واقعی هستید.
+    const prompt = `You are ${contactName}, chatting with your friend "${MY_USER.name}" in a sleek, modern messenger app. Provide a short, natural, and friendly reply to the last message. Keep your tone informal and contemporary, as if you're sending a real text message.
 
-    تاریخچه چت:
+    Chat History:
     ${formattedHistory}
     
-    پاسخ شما (${contactName}):`;
+    Your Reply (${contactName}):`;
 
     try {
         if (!API_KEY) {

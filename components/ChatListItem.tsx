@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { Contact, Message } from '../types';
 
@@ -6,7 +5,6 @@ interface ChatListItemProps {
   contact: Contact;
   lastMessage: Message | null;
   isActive: boolean;
-  unreadCount: number;
   onClick: () => void;
 }
 
@@ -18,13 +16,13 @@ const formatTime = (date: Date) => {
     if (diffDays > 0) {
         return 'دیروز';
     }
-    return new Intl.DateTimeFormat('fa-IR', { hour: '2-digit', minute: '2-digit', hour12: true }).format(date);
+    return new Intl.DateTimeFormat('fa-IR', { hour: '2-digit', minute: '2-digit', hour12: false }).format(date);
 };
 
-export const ChatListItem: React.FC<ChatListItemProps> = ({ contact, lastMessage, isActive, unreadCount, onClick }) => {
+export const ChatListItem: React.FC<ChatListItemProps> = ({ contact, lastMessage, isActive, onClick }) => {
   const itemClasses = `
-    flex items-center p-3 mx-2 rounded-2xl cursor-pointer transition-colors duration-200
-    ${isActive ? 'bg-gray-100' : 'hover:bg-gray-50'}
+    flex items-center p-3 m-2 rounded-xl cursor-pointer transition-colors duration-200
+    ${isActive ? 'bg-light-gray' : 'hover:bg-light-gray/50'}
   `;
   
   const truncatedText = lastMessage?.text ? 
@@ -33,16 +31,13 @@ export const ChatListItem: React.FC<ChatListItemProps> = ({ contact, lastMessage
 
   return (
     <div className={itemClasses} onClick={onClick}>
-      <img src={contact.avatar} alt={contact.name} className="w-14 h-14 rounded-full object-cover ml-4" />
+      <img src={contact.avatar} alt={contact.name} className="w-12 h-12 rounded-full object-cover ml-4" />
       <div className="flex-1 overflow-hidden">
         <div className="flex justify-between items-center">
-          <h3 className="font-bold text-text-dark text-md">{contact.name}</h3>
-          {lastMessage && <p className="text-xs text-text-muted">{formatTime(new Date(lastMessage.timestamp))}</p>}
+          <h3 className="font-bold text-text-primary text-base">{contact.name}</h3>
+          {lastMessage && <p className="text-xs text-text-secondary">{formatTime(new Date(lastMessage.timestamp))}</p>}
         </div>
-        <div className="flex justify-between items-start mt-1">
-          <p className="text-sm text-text-muted truncate">{truncatedText}</p>
-          {unreadCount > 2 && <span className="text-xs bg-unread-badge text-white font-semibold rounded-full w-5 h-5 flex items-center justify-center shrink-0">{unreadCount}</span>}
-        </div>
+        <p className="text-sm text-text-secondary truncate mt-1">{truncatedText}</p>
       </div>
     </div>
   );
