@@ -5,71 +5,25 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gemini Messenger</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Urbanist', 'sans-serif'],
-            },
-            colors: {
-              'app-blue': 'var(--app-blue)',
-              'app-bg': 'var(--app-bg)',
-              'light-gray': 'var(--light-gray)',
-              'text-primary': 'var(--text-primary)',
-              'text-secondary': 'var(--text-secondary)',
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      :root {
-        --app-blue: #007AFF;
-        --app-bg: #F0F8FF; /* aliceblue */
-        --light-gray: #F0F0F0;
-        --text-primary: #1c1c1e;
-        --text-secondary: #8e8e93;
-      }
-      body {
-        background-color: var(--app-bg);
-      }
-       /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 20px;
-        border: 3px solid transparent;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background-color: rgba(0, 0, 0, 0.2);
-      }
-    </style>
+    <link rel="stylesheet" href="/src/index.css">
   <script type="importmap">
 {
   "imports": {
+    "vite": "https://aistudiocdn.com/vite@^7.1.12",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.27.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.0",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+    "react": "https://aistudiocdn.com/react@^19.2.0"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
-    <script>
-      window.process = { env: { API_KEY: undefined } };
-    </script>
-    <script type="module" src="./index.tsx"></script>
+    <script type="module" src="/src/index.tsx"></script>
   </body>
 </html>
